@@ -1,15 +1,22 @@
-# amazon-scraper
+# Scraper de Produtos da Amazon
 
-To install dependencies:
+## Como Rodar
 
-```bash
-bun install
-```
+### Backend:
+1. Clone o repositório e navegue até a pasta do backend.
+2. Execute `bun install` para instalar as dependências.
+3. Execute `bun run app.js` para iniciar o servidor em `http://localhost:3000`.
 
-To run:
+### Frontend:
+1. Navegue até a pasta do frontend.
+2. Execute `npm install` para instalar as dependências.
+3. Execute `npm run dev` para iniciar o servidor do frontend.
 
-```bash
-bun run index.ts
-```
+### Como Usar:
+1. Abra a aplicação frontend no seu navegador (`http://localhost:5173`).
+2. Digite uma palavra-chave no campo de pesquisa e clique em "Buscar".
+3. Veja os detalhes dos produtos da Amazon.
 
-This project was created using `bun init` in bun v1.2.10. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
+### Notas:
+- Este aplicativo faz scraping da primeira página de resultados de pesquisa da Amazon.
+- Use apenas para aprendizado, pois a Amazon pode bloquear scrapers.
