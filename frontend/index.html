@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scraper de Produtos da Amazon</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+    #results {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .product {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+    }
+    .product img {
+      max-width: 100px;
+      height: auto;
+    }
+    .product h3 {
+      font-size: 16px;
+      margin: 10px 0;
+    }
+    .product .rating {
+      font-size: 14px;
+      color: #f5a623;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Scraper de Produtos da Amazon</h1>
+
+  <!-- Campo de pesquisa -->
+  <input type="text" id="keyword" placeholder="Digite a palavra-chave..." />
+  <button id="scrapeBtn">Buscar</button>
+
+  <!-- Exibição dos resultados -->
+  <div id="results"></div>
+
+  <script>
+    document.getElementById('scrapeBtn').addEventListener('click', async () => {
+      const keyword = document.getElementById('keyword').value;
+      if (!keyword) {
+        alert('Por favor, insira uma palavra-chave');
+        return;
+      }
+
+      try {
+        // Faz a requisição para o backend
+        const response = await fetch(`http://localhost:3000/api/scrape?keyword=${keyword}`);
+        const data = await response.json();
+
+        if (data.error) {
+          alert(data.error);
+          return;
+        }
+
+        // Exibe os resultados
+        const resultsDiv = document.getElementById('results');
+        resultsDiv.innerHTML = '';
+
+        data.results.forEach(product => {
+          const productDiv = document.createElement('div');
+          productDiv.classList.add('product');
+
+          productDiv.innerHTML = `
+            <img src="${product.img}" alt="${product.title}" />
+            <h3>${product.title}</h3>
+            <div class="rating">${product.rating}</div>
+            <div>${product.reviews} avaliações</div>
+          `;
+
+          resultsDiv.appendChild(productDiv);
+        });
+
+      } catch (error) {
+        alert('Erro ao buscar dados');
+      }
+    });
+  </script>
+
+</body>
+</html>
