@@ -1,4 +1,4 @@
-# Scraper de Produtos da Amazon
+# Amazon
 
 ## Como Rodar
 
@@ -19,4 +19,4 @@
 
 ### Notas:
 - Este aplicativo faz scraping da primeira página de resultados de pesquisa da Amazon.
-- Use apenas para aprendizado, pois a Amazon pode bloquear scrapers.
+  
